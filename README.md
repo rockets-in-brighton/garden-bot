@@ -6,7 +6,7 @@
 
 Both of these scripts are run on startup by the RPi, using the script /etc/rc.local
 
-   sudo python3 /home/python/server/server.py &
-   sudo python3 /home/python/server/steering.py &
-   exit 0
+   sudo python3 /home/python/server/server.py &  
+   sudo python3 /home/python/server/steering.py &  
+   exit 0  
 

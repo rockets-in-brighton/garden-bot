@@ -1,7 +1,10 @@
 # config.py
 
-# these are GPIO Pins
 CONFIG = {
+    'LogServerURL': 'http://192.168.0.231:8000/log?data=',
+    
+    # these are GPIO Pins
+
     'Left.Button': 2,
     'Right.Button': 17,
     'Left.Motor.A': 14,

@@ -3,6 +3,7 @@ import socketserver
 import os
 import urllib.parse
 import cgi
+from datetime import datetime
 
 class LogServerRequestHandler(http.server.BaseHTTPRequestHandler):
  
@@ -20,8 +21,8 @@ class LogServerRequestHandler(http.server.BaseHTTPRequestHandler):
             # http://192.168.0.231:8000/log?data=xyz
             if command[:9] == 'log?data=':
                 data = command[9:]
-                f = open('./data.log', "w+")
-                f.write(data)
+                f = open('./data.log', "a")
+                f.write(datetime.now().strftime('%Y-%m-%d %H:%M:%S ' ) + urllib.parse.unquote(data) + "\n")
                 f.close()
                 err = False
 

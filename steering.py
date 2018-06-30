@@ -1,18 +1,10 @@
 import RPi.GPIO as GPIO
 import time
 import config
-import logging
+import urllib.request
+import urllib.parse
 
-logger = logging.getLogger('steering')
-logger.setLevel(logging.DEBUG)
-fh = logging.FileHandler('logs/steering.log')
-fh.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-fh.setFormatter(formatter)
-logger.addHandler(fh)
-
-logger.debug('start')
-
+LogServerURL = config.CONFIG['LogServerURL']
 
 GPIO.setmode(GPIO.BCM) # GPIOnn
 
@@ -58,6 +50,11 @@ RB = False
 State = "Stop"
 
 while 1:
+
+    Previous_LB = LB
+    Previous_RB = RB
+    Previous_Speed = Speed
+    Previous_State = State
 
     try:
 
@@ -115,7 +112,11 @@ while 1:
             RightMotorA_PWM.ChangeDutyCycle(0)      # low
             RightMotorB_PWM.ChangeDutyCycle(0)      # low
 
-        logger.debug('LB/RB/State/Speed: ' + str(LB) + '/' + str(RB) + '/' + State + '/' + str(Speed))
+        # logger.debug('LB/RB/State/Speed: ' + str(LB) + '/' + str(RB) + '/' + State + '/' + str(Speed))
+
+        if not(Previous_LB == LB and Previous_RB == RB and Previous_State == State):
+            data = urllib.parse.quote('LB={}, RB={}, State={}, Speed={}'.format(LB, RB, State, Speed))
+            urllib.request.urlopen(LogServerURL + data)
 
         time.sleep(config.CONFIG['Sleep.Time.Seconds']) # 50 ms, 20 Hz
 

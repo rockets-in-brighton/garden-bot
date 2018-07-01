@@ -5,12 +5,12 @@ CONFIG = {
     
     # these are GPIO Pins
 
-    'Left.Button': 2,
-    'Right.Button': 17,
-    'Left.Motor.A': 14,
-    'Left.Motor.B': 15,
-    'Right.Motor.A': 23,
-    'Right.Motor.B': 24,
+    'Left.Button': 11,
+    'Right.Button': 12,
+    'Left.Motor.A': 3,
+    'Left.Motor.B': 5,
+    'Right.Motor.A': 24,
+    'Right.Motor.B': 26,
 
     'PWM.Frequency': 100,
 

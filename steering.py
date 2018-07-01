@@ -1,3 +1,5 @@
+# steering.py
+
 import RPi.GPIO as GPIO
 import time
 import config
@@ -6,17 +8,17 @@ import urllib.parse
 
 LogServerURL = config.CONFIG['LogServerURL']
 
-GPIO.setmode(GPIO.BCM) # GPIOnn
+GPIO.setmode(GPIO.BOARD)
 
-LeftButton  = config.CONFIG['Left.Button']     # GPIO2,  pin  3
-RightButton = config.CONFIG['Right.Button']    # GPIO17, pin 11
+LeftButton  = config.CONFIG['Left.Button']
+RightButton = config.CONFIG['Right.Button']
 
 
-LeftMotorA  = config.CONFIG['Left.Motor.A']    # GPIO14, pin  8
-LeftMotorB  = config.CONFIG['Left.Motor.B']    # GPIO15, pin 10
+LeftMotorA  = config.CONFIG['Left.Motor.A']
+LeftMotorB  = config.CONFIG['Left.Motor.B']
 
-RightMotorA = config.CONFIG['Right.Motor.A']   # GPIO23, pin 16
-RightMotorB = config.CONFIG['Right.Motor.B']   # GPIO24, pin 18
+RightMotorA = config.CONFIG['Right.Motor.A']
+RightMotorB = config.CONFIG['Right.Motor.B']
 
 GPIO.setwarnings(False)
 
